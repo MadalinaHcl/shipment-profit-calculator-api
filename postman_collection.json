@@ -1,0 +1,44 @@
+{
+  "info": {
+    "name": "Shipment Profit Calculator API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Calculate Profit - existing shipment",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:8080/api/profit-calculations", "host": ["localhost"], "port": "8080", "path": ["api", "profit-calculations"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"shipmentCode\": \"0001\",\n  \"income\": 230.50,\n  \"cost\": 200,\n  \"additionalCost\": 0\n}"
+        }
+      }
+    },
+    {
+      "name": "Calculate Profit - new shipment with additional cost",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:8080/api/profit-calculations", "host": ["localhost"], "port": "8080", "path": ["api", "profit-calculations"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"shipmentCode\": \"0005\",\n  \"income\": 1500,\n  \"cost\": 300,\n  \"additionalCost\": 75.25\n}"
+        }
+      }
+    },
+    {
+      "name": "Calculate Profit - validation error",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:8080/api/profit-calculations", "host": ["localhost"], "port": "8080", "path": ["api", "profit-calculations"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"shipmentCode\": \"\",\n  \"income\": -5,\n  \"cost\": 10\n}"
+        }
+      }
+    }
+  ]
+}
