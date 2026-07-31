@@ -9,63 +9,63 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "cost", uniqueConstraints = @UniqueConstraint(columnNames = {"shipment_id", "cost_type"}))
+@Table(
+    name = "cost",
+    uniqueConstraints = @UniqueConstraint(columnNames = {"shipment_id", "cost_type"}))
 public class Cost extends AbstractEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shipment_id", nullable = false)
-    private Shipment shipment;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "shipment_id", nullable = false)
+  private Shipment shipment;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "cost_type", nullable = false, length = 20)
-    private CostType costType;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "cost_type", nullable = false, length = 20)
+  private CostType costType;
 
-    @Column(name = "amount", nullable = false, precision = 12, scale = 2)
-    private BigDecimal amount;
+  @Column(name = "amount", nullable = false, precision = 12, scale = 2)
+  private BigDecimal amount;
 
-    @Column(name = "description")
-    private String description;
+  @Column(name = "description")
+  private String description;
 
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
+  @Column(name = "created_at", nullable = false)
+  private LocalDateTime createdAt;
 
-    protected Cost() {
-    }
+  protected Cost() {}
 
-    public Cost(Shipment shipment, CostType costType, BigDecimal amount, String description) {
-        this.shipment = shipment;
-        this.costType = costType;
-        this.amount = amount;
-        this.description = description;
-        this.createdAt = LocalDateTime.now();
-    }
+  public Cost(Shipment shipment, CostType costType, BigDecimal amount, String description) {
+    this.shipment = shipment;
+    this.costType = costType;
+    this.amount = amount;
+    this.description = description;
+    this.createdAt = LocalDateTime.now();
+  }
 
-    public Shipment getShipment() {
-        return shipment;
-    }
+  public Shipment getShipment() {
+    return shipment;
+  }
 
-    public CostType getCostType() {
-        return costType;
-    }
+  public CostType getCostType() {
+    return costType;
+  }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
+  public BigDecimal getAmount() {
+    return amount;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
+  public LocalDateTime getCreatedAt() {
+    return createdAt;
+  }
 
-    public void updateAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
+  public void updateAmount(BigDecimal amount) {
+    this.amount = amount;
+  }
 }

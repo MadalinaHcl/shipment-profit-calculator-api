@@ -14,14 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/profit-calculations")
 public class ProfitController {
 
-    private final ProfitCalculationService profitCalculationService;
+  private final ProfitCalculationService profitCalculationService;
 
-    public ProfitController(ProfitCalculationService profitCalculationService) {
-        this.profitCalculationService = profitCalculationService;
-    }
+  public ProfitController(ProfitCalculationService profitCalculationService) {
+    this.profitCalculationService = profitCalculationService;
+  }
 
-    @PostMapping
-    public ResponseEntity<ProfitLossResponse> calculateProfit(@Valid @RequestBody CalculateProfitRequest request) {
-        return ResponseEntity.ok(profitCalculationService.calculateProfit(request));
-    }
+  @PostMapping
+  public ResponseEntity<ProfitLossResponse> calculateProfit(
+      @Valid @RequestBody CalculateProfitRequest request) {
+    return ResponseEntity.ok(profitCalculationService.calculateProfit(request));
+  }
 }
